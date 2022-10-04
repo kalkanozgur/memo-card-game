@@ -4,63 +4,63 @@ const initialState = {
 	items: [
 		{
 			id: nanoid(),
-			img: "angular2.png",
+			img: "1.png",
 		},
 		{
 			id: nanoid(),
-			img: "babel.png",
+			img: "2.png",
 		},
 		{
 			id: nanoid(),
-			img: "bower.png",
+			img: "3.png",
 		},
 		{
 			id: nanoid(),
-			img: "browserify.png",
+			img: "4.png",
 		},
 		{
 			id: nanoid(),
-			img: "ember.png",
+			img: "5.png",
 		},
 		{
 			id: nanoid(),
-			img: "grunt.png",
+			img: "6.png",
 		},
 		{
 			id: nanoid(),
-			img: "gulp.png",
+			img: "7.png",
 		},
 		{
 			id: nanoid(),
-			img: "ionic.png",
+			img: "8.png",
 		},
 		{
 			id: nanoid(),
-			img: "meteor.png",
+			img: "9.png",
 		},
 		{
 			id: nanoid(),
-			img: "nodejs.png",
+			img: "10.png",
 		},
 		{
 			id: nanoid(),
-			img: "phantomjs.png",
+			img: "11.png",
 		},
 		{
 			id: nanoid(),
-			img: "react.png",
+			img: "12.png",
 		},
 		{
 			id: nanoid(),
-			img: "vue.png",
+			img: "13.png",
 		},
 		{
 			id: nanoid(),
-			img: "yarn.png",
+			img: "14.png",
 		},
 		{
 			id: nanoid(),
-			img: "yeoman.png",
+			img: "15.png",
 		},
 	],
 	list: [],
