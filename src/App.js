@@ -18,6 +18,7 @@ function App() {
 	const dispatch = useDispatch();
 	const items = useSelector((state) => state.card.items);
 	const cardList = useSelector((state) => state.card.list);
+	const score = useSelector((state) => state.card.score);
 	const concArray = items.concat(items);
 	const [shuffle, setShuffle] = useState(
 		[...concArray].sort((a, b) => 0.5 - Math.random())
@@ -25,8 +26,9 @@ function App() {
 
 	useEffect(() => {
 		if (cardList.length < 16) {
-			setShuffle([...concArray].sort((a, b) => 0.5 - Math.random()));
-			shuffle.map((card) => dispatch(createCard(card.id, card.img)));
+			// setShuffle([...concArray].sort((a, b) => 0.5 - Math.random()));
+			// shuffle.map((card) => dispatch(createCard(card.id, card.img)));
+			concArray.map((card) => dispatch(createCard(card.id, card.img)));
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [concArray]);
@@ -34,7 +36,7 @@ function App() {
 	return (
 		cardList && (
 			<div className="container w-9/12 h-full self-center">
-				<Header />
+				<Header score={score} />
 				<div className="grid grid-cols-6 grid-rows-5 gap-3 justify-items-center items-center">
 					{cardList.map((card, index) => (
 						<Card card={card} key={index} />

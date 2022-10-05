@@ -64,8 +64,8 @@ const initialState = {
 		},
 	],
 	list: [],
-	opened: [],
-	completed: [],
+	openedList: [],
+	completedList: [],
 	score: 200,
 };
 
@@ -82,8 +82,9 @@ const cardSlice = createSlice({
 				// console.log("id, img", id, img);
 				return {
 					payload: {
-						id: id,
+						id: nanoid(),
 						img: img,
+						tag: id,
 						isOpened: false,
 						isCompleted: false,
 					},
@@ -91,14 +92,53 @@ const cardSlice = createSlice({
 			},
 		},
 
-		flipCard: (state, action) => {},
-		checkCard: (state, action) => {},
-		updateScore: (state, action) => {},
+		flipCard: (state, action) => {
+			const index = state.list.findIndex(
+				(item) => item.id === action.payload.id
+			);
+			const isThereOpened = state.openedList.findIndex(
+				(item) => item.id === action.payload.id
+			);
+			if (isThereOpened === -1) {
+				state.openedList.push(state.list[index]);
+			}
+			if (state.list[index].isOpened === false) {
+				state.list[index].isOpened = true;
+			} else {
+				state.list[index].isOpened = false;
+				state.openedList = [];
+			}
+		},
+		checkOpenedCards: (state, action) => {
+			try {
+				const index0 = state.list.findIndex(
+					(item) => item.id === state.openedList[0].id
+				);
+
+				const index1 = state.list.findIndex(
+					(item) => item.id === state.openedList[1].id
+				);
+				if (state.openedList[0].tag === state.openedList[1].tag) {
+					state.list[index0].isCompleted = true;
+					state.list[index1].isCompleted = true;
+					state.completedList.push(state.list[index0]);
+					state.completedList.push(state.list[index1]);
+					state.score += 50;
+				} else {
+					state.list[index0].isOpened = false;
+					state.list[index1].isOpened = false;
+					state.openedList = [];
+					state.score -= 20;
+				}
+				state.openedList = [];
+			} catch (e) {}
+		},
+		resetOpened: (state, action) => {},
 		restart: (state, action) => {},
 	},
 });
 
-export const { createCard, flipCard, checkCard, updateScore, restart } =
+export const { createCard, flipCard, checkOpenedCards, updateScore, restart } =
 	cardSlice.actions;
 
 export default cardSlice.reducer;
