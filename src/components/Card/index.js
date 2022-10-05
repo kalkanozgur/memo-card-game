@@ -31,7 +31,7 @@ function Card({ card }) {
 		>
 			<div
 				className={` flex justify-center items-center flip h-24 w-24  ${
-					card.isOpened && "flip-opened"
+					card.isOpened | card.isCompleted && "flip-opened"
 				}`}
 				onClick={handleClick}
 			>

@@ -121,6 +121,8 @@ const cardSlice = createSlice({
 				if (state.openedList[0].tag === state.openedList[1].tag) {
 					state.list[index0].isCompleted = true;
 					state.list[index1].isCompleted = true;
+					state.list[index0].isOpened = false;
+					state.list[index1].isOpened = false;
 					state.completedList.push(state.list[index0]);
 					state.completedList.push(state.list[index1]);
 					state.score += 50;
